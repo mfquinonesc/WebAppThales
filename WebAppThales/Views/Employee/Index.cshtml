@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WebAppThales.Models.EmployeeViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee_salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee_age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profile_image)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee_salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee_age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profile_image)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
