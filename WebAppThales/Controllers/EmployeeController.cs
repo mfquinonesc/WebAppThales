@@ -13,7 +13,7 @@ namespace WebAppThales.Controllers
 {
     public class EmployeeController : Controller
     {
-        private List<EmployeeViewModel> GetEmployeesList()
+        public List<EmployeeViewModel> GetEmployeesList()
         {
             List<EmployeeViewModel> employees = new List<EmployeeViewModel>();
             try

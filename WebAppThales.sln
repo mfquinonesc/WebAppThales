@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppThales", "WebAppThales\WebAppThales.csproj", "{3E26997C-9C0D-431B-A2BF-5FC5CE32AD77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppThales", "WebAppThales\WebAppThales.csproj", "{3E26997C-9C0D-431B-A2BF-5FC5CE32AD77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppThalesTest", "WebAppThalesTest\WebAppThalesTest.csproj", "{9A4EA6AA-AFBC-4ADE-A4A7-044BB9D0AF00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3E26997C-9C0D-431B-A2BF-5FC5CE32AD77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E26997C-9C0D-431B-A2BF-5FC5CE32AD77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E26997C-9C0D-431B-A2BF-5FC5CE32AD77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A4EA6AA-AFBC-4ADE-A4A7-044BB9D0AF00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A4EA6AA-AFBC-4ADE-A4A7-044BB9D0AF00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A4EA6AA-AFBC-4ADE-A4A7-044BB9D0AF00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A4EA6AA-AFBC-4ADE-A4A7-044BB9D0AF00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
