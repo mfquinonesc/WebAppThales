@@ -53,8 +53,12 @@ namespace WebAppThales.Controllers
             if(employee != null)
             {
                 employee.Employee_anual_salary = employee.Employee_salary * 12;
+                return View(employee);
             }
-            return View(employee);
+            else
+            {
+                return Redirect("/Employee/Employees");
+            }            
         }     
 
 
@@ -71,19 +75,24 @@ namespace WebAppThales.Controllers
                         model.Employee_anual_salary = model.Employee_salary * 12;
                     }
                 }
-            }
-            string CompleteUrl = Request.GetDisplayUrl();
-            
+            }   
             return View(employees);
         }
 
 
         [HttpGet]
-        public IActionResult Search()
-        {
-            string CompleteUrl = Request.GetDisplayUrl();
+        public IActionResult Search(string Id)
+        {            
+            int id = 0;
+            if (int.TryParse(Id, out id))
+            {
 
-            return View(Search);            
+                return Redirect($"/Employee/Employee/{Id}");
+            }
+            else
+            {
+                return Redirect("/Employee/Employees");
+            }        
         }
     }
 }
