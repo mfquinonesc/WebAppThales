@@ -53,6 +53,7 @@ namespace WebAppThales.Controllers
             if(employee != null)
             {
                 employee.Employee_anual_salary = employee.Employee_salary * 12;
+                ViewData["Title"] = employee.Employee_name;
                 return View(employee);
             }
             else
@@ -86,8 +87,7 @@ namespace WebAppThales.Controllers
             int id = 0;
             if (int.TryParse(Id, out id))
             {
-
-                return Redirect($"/Employee/Employee/{Id}");
+                return Redirect($"/Employee/Employee/{id}");
             }
             else
             {

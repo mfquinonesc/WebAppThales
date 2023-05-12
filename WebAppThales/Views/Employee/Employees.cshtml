@@ -7,29 +7,26 @@
 
 <h1>Employees</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayName("ID")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Employee_name)
+                @Html.DisplayName("Name")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Employee_salary)
+                @Html.DisplayName("Salary")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Employee_age)
+                @Html.DisplayName("Age")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Profile_image)
+                @Html.DisplayName("Image Url")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Employee_anual_salary)
+                @Html.DisplayName("Anual Salary")
             </th>
             <th></th>
         </tr>
@@ -56,9 +53,7 @@
                 @Html.DisplayFor(modelItem => item.Employee_anual_salary)
             </td>
             <td>
-                @Html.ActionLink("Employee", "Employee", new { id=item.Id }) |
-                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                @Html.ActionLink("Employee", "Employee", new { id=item.Id })                
             </td>
         </tr>
 }

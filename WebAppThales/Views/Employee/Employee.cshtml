@@ -1,55 +1,53 @@
 ﻿@model WebAppThales.Models.EmployeeViewModel
 
-@{
-    ViewData["Title"] = "Employee";
+@{    
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Employee</h1>
 
 <div>
-    <h4>EmployeeViewModel</h4>
+    <h4>@ViewData["Title"]</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayName("ID")
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Id)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee_name)
+            @Html.DisplayName("Name")
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Employee_name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee_salary)
+            @Html.DisplayName("Salary")
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Employee_salary)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee_age)
+            @Html.DisplayName("Age")
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Employee_age)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Profile_image)
+            @Html.DisplayName("Image")
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Profile_image)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee_anual_salary)
+            @Html.DisplayName("Anual Salary")
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Employee_anual_salary)
         </dd>
     </dl>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+<div>   
+    <a  asp-area="" asp-controller="Home" asp-action="Index">Home</a>
 </div>
