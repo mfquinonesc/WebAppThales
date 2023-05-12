@@ -1,8 +1,18 @@
-﻿@{
+﻿@model WebAppThales.Models.EmployeeViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Employees</h1>
 </div>
+
+@using (Html.BeginForm("Employee", "Search", FormMethod.Get))
+{
+    <div class="input-group mb-3" style="padding-top:30px">
+        <input type="text" class="form-control" name="Id">
+        <div class="input-group-append">
+            <input class="input-group-text" value="Search by Id" type="submit" asp-page="/Employee/Employees" />
+        </div>
+    </div>
+}

@@ -6,15 +6,16 @@ using System.Data;
 using System.Text.Json;
 using Newtonsoft.Json.Linq;
 using System.Linq.Expressions;
+using Microsoft.CodeAnalysis.Operations;
+using Microsoft.AspNetCore.Http.Extensions;
 
 namespace WebAppThales.Controllers
 {
     public class EmployeeController : Controller
     {
-        [HttpGet]
-        public IActionResult Index()
+        private List<EmployeeViewModel> GetEmployeesList()
         {
-            List<EmployeeViewModel> employees= new List<EmployeeViewModel>();
+            List<EmployeeViewModel> employees = new List<EmployeeViewModel>();
             try
             {
                 using (var client = new HttpClient())
@@ -24,7 +25,6 @@ namespace WebAppThales.Controllers
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     var responseTask = client.GetAsync("employees");
                     responseTask.Wait();
-                    //HttpResponseMessage getData = await client.GetAsync("employees");
                     var result = responseTask.Result;
 
                     if (result.IsSuccessStatusCode)
@@ -33,26 +33,57 @@ namespace WebAppThales.Controllers
                         var arrJSON = (JObject)JsonConvert.DeserializeObject(jsonResult);
                         var data = arrJSON.GetValue("data");
                         employees = data.ToObject<List<EmployeeViewModel>>();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Too Many Requests");
-                    }
+                    }                   
                 }
             }
             catch (Exception ex)
             {
-
+                employees = null;
             }
+            return employees;
+        }
 
 
-
-
-           
-            return View();
-
+        [HttpGet]
+        public IActionResult Employee(int id)
+        {            
+            EmployeeViewModel employee;
+            List<EmployeeViewModel> employees= GetEmployeesList();  
+            employee = employees.Find(employee=> employee.Id == id);
+            if(employee != null)
+            {
+                employee.Employee_anual_salary = employee.Employee_salary * 12;
             }
-     
-        
+            return View(employee);
+        }     
+
+
+        [HttpGet]
+        public IActionResult Employees()
+        {
+            List<EmployeeViewModel> employees = this.GetEmployeesList(); ;
+            if(employees != null)
+            {
+                if(employees.Count > 0) 
+                {
+                    foreach (EmployeeViewModel model in employees)
+                    {
+                        model.Employee_anual_salary = model.Employee_salary * 12;
+                    }
+                }
+            }
+            string CompleteUrl = Request.GetDisplayUrl();
+            
+            return View(employees);
+        }
+
+
+        [HttpGet]
+        public IActionResult Search()
+        {
+            string CompleteUrl = Request.GetDisplayUrl();
+
+            return View(Search);            
+        }
     }
 }

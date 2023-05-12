@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<WebAppThales.Models.EmployeeViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Employees";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Employees</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -27,6 +27,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Profile_image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee_anual_salary)
             </th>
             <th></th>
         </tr>
@@ -50,9 +53,12 @@
                 @Html.DisplayFor(modelItem => item.Profile_image)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.DisplayFor(modelItem => item.Employee_anual_salary)
+            </td>
+            <td>
+                @Html.ActionLink("Employee", "Employee", new { id=item.Id }) |
+                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>
         </tr>
 }
