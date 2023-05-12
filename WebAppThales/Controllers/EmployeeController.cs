@@ -2,19 +2,21 @@
 using WebAppThales.Models;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
-using System.Data;
-using System.Text.Json;
 using Newtonsoft.Json.Linq;
-using System.Linq.Expressions;
-using Microsoft.CodeAnalysis.Operations;
-using Microsoft.AspNetCore.Http.Extensions;
+
 
 namespace WebAppThales.Controllers
 {
     public class EmployeeController : Controller
     {
+
         private const string API_EMPLOYEES = "http://dummy.restapiexample.com/api/v1/";
 
+        /// <summary>
+        /// This method is responsible for retrieving the employee with the specified Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public EmployeeViewModel GetEmployee(int id)
         {
             EmployeeViewModel employee = new EmployeeViewModel();
@@ -34,7 +36,7 @@ namespace WebAppThales.Controllers
                         string jsonResult = result.Content.ReadAsStringAsync().Result;
                         var arrJSON = (JObject)JsonConvert.DeserializeObject(jsonResult);
                         var data = arrJSON.GetValue("data");
-                        //employees = data.ToObject<List<EmployeeViewModel>>();
+                        employee = data.ToObject<EmployeeViewModel>();
                     }
                 }
             }
@@ -45,6 +47,11 @@ namespace WebAppThales.Controllers
             return employee;
         }
 
+
+        /// <summary>
+        /// This method is responsible for retrieving the list of all employees.
+        /// </summary>
+        /// <returns></returns>
         public List<EmployeeViewModel> GetEmployeesList()
         {
             List<EmployeeViewModel> employees = new List<EmployeeViewModel>();
@@ -79,10 +86,8 @@ namespace WebAppThales.Controllers
         [HttpGet]
         public IActionResult Employee(int id)
         {            
-            EmployeeViewModel employee = null;
-            List<EmployeeViewModel> employees= GetEmployeesList();  
-            employee = employees.Find(employee=> employee.Id == id);
-            if(employee != null)
+            EmployeeViewModel employee = this.GetEmployee(id);
+            if(employee != null && employee.Id > 0)
             {
                 employee.Employee_anual_salary = employee.Employee_salary * 12;
                 ViewData["Title"] = employee.Employee_name;
@@ -122,8 +127,7 @@ namespace WebAppThales.Controllers
         { 
             int id = 0;
             if (int.TryParse(Id, out id))
-            {
-                this.GetEmployee(id);
+            {               
                 return Redirect($"/Employee/Employee/{id}");
             }
             else

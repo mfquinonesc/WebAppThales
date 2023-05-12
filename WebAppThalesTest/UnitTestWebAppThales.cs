@@ -29,5 +29,22 @@ namespace WebAppThalesTest
                 Assert.AreEqual(24, employees.Count);
             }                  
         }
+
+
+        /// <summary>
+        /// Here is the test for the method that is eable to get the  employee from the API        
+        /// </summary>
+        [TestMethod]
+        public void TestMethod_GetEmployee()
+        {
+            int expectedValue = 4;
+            EmployeeController controller = new EmployeeController();
+            EmployeeViewModel employee = controller.GetEmployee(expectedValue);
+            if (employee != null && employee.Id != 0)
+            {           
+                Assert.AreEqual(expectedValue, employee.Id);
+            }
+        }
+
     }
 }
