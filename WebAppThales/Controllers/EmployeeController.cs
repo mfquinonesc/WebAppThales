@@ -34,7 +34,7 @@ namespace WebAppThales.Controllers
                         var data = arrJSON.GetValue("data");
                         employees = data.ToObject<List<EmployeeViewModel>>();
                     }                   
-                }
+                }               
             }
             catch (Exception ex)
             {
@@ -47,7 +47,7 @@ namespace WebAppThales.Controllers
         [HttpGet]
         public IActionResult Employee(int id)
         {            
-            EmployeeViewModel employee;
+            EmployeeViewModel employee = null;
             List<EmployeeViewModel> employees= GetEmployeesList();  
             employee = employees.Find(employee=> employee.Id == id);
             if(employee != null)
@@ -76,6 +76,10 @@ namespace WebAppThales.Controllers
                         model.Employee_anual_salary = model.Employee_salary * 12;
                     }
                 }
+                else
+                {
+                   return Redirect("/Employee/Message");
+                }
             }   
             return View(employees);
         }
@@ -93,6 +97,12 @@ namespace WebAppThales.Controllers
             {
                 return Redirect("/Employee/Employees");
             }        
+        }
+
+
+        public IActionResult Message() 
+        { 
+            return View();
         }
     }
 }
